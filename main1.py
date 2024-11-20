@@ -3,12 +3,10 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 from utils.transform import ImageProcessor
-from models.vgg import VGG  # Pastikan ini sesuai dengan lokasi file VGG
-from models.GramMatrix import GramMatrix, GramMSELoss  # Impor GramMatrix dan GramMSELoss
-from PIL import Image
+from models.vgg import VGG
+from models.GramMatrix import GramMatrix, GramMSELoss
 import os
 
-# Memeriksa apakah GPU tersedia
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
