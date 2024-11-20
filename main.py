@@ -8,6 +8,7 @@ from models.GramMatrix import GramMatrix, GramMSELoss  # Impor GramMatrix dan Gr
 from PIL import Image
 import os
 
+
 # Inisialisasi ImageProcessor
 img_processor = ImageProcessor(img_size=512)
 
@@ -18,6 +19,7 @@ content_image_path = "dataset/content/Tuebingen_Neckarfront.jpg"
 style_image = img_processor.preprocess(style_image_path)
 content_image = img_processor.preprocess(content_image_path)
 
+
 # Pindahkan ke GPU jika tersedia
 if torch.cuda.is_available():
     style_image = Variable(style_image.cuda())
@@ -26,13 +28,16 @@ else:
     style_image = Variable(style_image)
     content_image = Variable(content_image)
 
+
 # Tensor untuk optimasi
 opt_img = Variable(content_image.data.clone(), requires_grad=True)
+
 
 # Load VGG model
 vgg = VGG()
 if torch.cuda.is_available():
     vgg.cuda()
+
 
 # Definisikan layer, fungsi loss, dan target
 style_layers = ['r11', 'r21', 'r31', 'r41', 'r51']
